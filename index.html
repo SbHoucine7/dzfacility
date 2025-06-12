@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب كلفة التقسيط - صندوق الشباب السيادي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>حساب كلفة التقسيط - صندوق الشباب السيادي</h2>
+        </div>
+
+        <div class="options-container">
+            <button class="option-button active" onclick="switchCalculation('byMonths')">
+                <h3>حساب التكلفة بعدد أشهر معين</h3>
+                <p>حدد عدد الأشهر واعرف قيمة القسط الشهري</p>
+            </button>
+            <button class="option-button" onclick="switchCalculation('byAmount')">
+                <h3>حساب التكلفة بمبلغ معين</h3>
+                <p>حدد المبلغ الشهري واعرف عدد الأشهر المطلوبة</p>
+            </button>
+        </div>
+
+        <div id="byMonthsForm" class="calculation-form active">
+            <div class="form-group">
+                <label for="price1">سعر السلعة:</label>
+                <input type="text" id="price1" required="required" oninput="formatInputNumber(this)" placeholder="أدخل سعر السلعة" />
+            </div>
+            <div class="form-group">
+                <label for="interestRate1">نسبة التقسيط الشهرية (%):</label>
+                <input type="number" id="interestRate1" required="required" step="0.1" min="0" max="100" value="4" placeholder="أدخل نسبة التقسيط" />
+            </div>
+            <div class="form-group">
+                <label for="months">عدد أشهر التقسيط:</label>
+                <input type="number" id="months" required="required" placeholder="أدخل عدد الأشهر" />
+            </div>
+            <button onclick="calculateByMonths()">حساب التكلفة</button>
+        </div>
+
+        <div id="byAmountForm" class="calculation-form">
+            <div class="form-group">
+                <label for="price2">سعر السلعة:</label>
+                <input type="text" id="price2" required="required" oninput="formatInputNumber(this)" placeholder="أدخل سعر السلعة" />
+            </div>
+            <div class="form-group">
+                <label for="interestRate2">نسبة التقسيط الشهرية (%):</label>
+                <input type="number" id="interestRate2" required="required" step="0.1" min="0" max="100" value="4" placeholder="أدخل نسبة التقسيط" />
+            </div>
+            <div class="form-group">
+                <label for="monthlyAmount">المبلغ الشهري المطلوب:</label>
+                <input type="text" id="monthlyAmount" required="required" oninput="formatInputNumber(this)" placeholder="أدخل المبلغ الشهري" />
+            </div>
+            <button onclick="calculateByAmount()">حساب التكلفة</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <!-- إضافة نافذة الإشعار -->
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <div class="alert-message">المبلغ الشهري المدخل منخفض جداً. يجب أن يكون أكبر من الفائدة الشهرية.</div>
+            <button onclick="closeAlert()" class="alert-button">موافق</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
